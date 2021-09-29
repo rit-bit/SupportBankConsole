@@ -4,13 +4,13 @@ namespace SupportBankConsole
 {
     public class Transaction
     {
-        private readonly string Date;
-        private readonly string From;
-        private readonly string To;
+        private readonly string Date; // Change this to DateTime
+        private readonly string From; // Change this to Person
+        private readonly string To; // Change this to Person
         private readonly string Narrative;
-        private readonly int Amount;
+        private readonly decimal Amount;
 
-        public Transaction(string date, string from, string to, string narrative, int amount)
+        public Transaction(string date, string from, string to, string narrative, decimal amount)
         {
             Date = date;
             From = from;

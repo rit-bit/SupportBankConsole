@@ -25,10 +25,9 @@ namespace SupportBankConsole
             {
                 Console.WriteLine(line);
                 var parts = line.Split(",");
-                Console.WriteLine(parts[0]);
-                var amount = Convert.ToInt32(parts[4]);
+                // Console.WriteLine(parts[0]);
+                var amount = Convert.ToDecimal(parts[4]);
                 transactions.Add(new Transaction(parts[0], parts[1], parts[2], parts[3], amount));
-                line = sr.ReadLine();
             }
             sr.Close();
             return transactions;
