@@ -1,0 +1,17 @@
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.exe
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.deps.json
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.runtimeconfig.json
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.runtimeconfig.dev.json
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.dll
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\ref\SupportBankConsole.dll
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\SupportBankConsole.pdb
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.csproj.AssemblyReference.cache
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.AssemblyInfoInputs.cache
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.AssemblyInfo.cs
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.csproj.CoreCompileInputs.cache
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.dll
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\ref\SupportBankConsole.dll
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.pdb
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.genruntimeconfig.cache
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\Transactions2014.csv
