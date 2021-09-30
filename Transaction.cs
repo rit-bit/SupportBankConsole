@@ -5,8 +5,8 @@ namespace SupportBankConsole
     public class Transaction
     {
         private readonly DateTime Date; 
-        private readonly Person From; 
-        private readonly Person To; 
+        public readonly Person From; 
+        public readonly Person To; 
         private readonly string Narrative;
         private readonly decimal Amount;
 
@@ -17,6 +17,11 @@ namespace SupportBankConsole
             To = to;
             Narrative = narrative;
             Amount = amount;
+        }
+
+        public override string ToString()
+        {
+            return $"{Date:MM/dd/yyyy} {To.name} lent £{Amount} to {From.name} for {Narrative}.";
         }
     }
 }
