@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zqoa7COlJ+5y+vjIL7VSptFMCV+18dGROVlt/+5apdWLjz33snPvwraJvE0TBYb1Rj+BZfFwPT7ehsixFKUOAw==",
+  "dgSpecHash": "Tk96+DBSQaMgK+q4L/BPKKK9eSlxz+ssuXSzsYhcqrxEJQZM9KAOnFzIifyjaxofrsP5lkHnXW8OXIXSK1sU1w==",
   "success": true,
   "projectFilePath": "C:\\Users\\ricsut\\RiderProjects\\SupportBankConsole\\SupportBankConsole\\SupportBankConsole.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ricsut\\.nuget\\packages\\nlog\\5.0.0-preview.1\\nlog.5.0.0-preview.1.nupkg.sha512"
+  ],
   "logs": []
 }

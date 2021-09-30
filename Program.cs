@@ -3,28 +3,39 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Transactions;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace SupportBankConsole
 {
     class Program
     {
-        
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         private readonly List<Person> _people = new List<Person>();
         private readonly List<Transaction> _transactions = new List<Transaction>();
         
         static void Main(string[] args)
         {
             var p = new Program();
-            var transactions = p.ImportCsv();
+            p.ImportCsv("./Transactions2014.csv");
+            p.ImportCsv("./DodgyTransactions2015.csv");
             while (true)
             {
                 p.UserInput();
             }
         }
         
-        public List<Transaction> ImportCsv()
+        public List<Transaction> ImportCsv(string path)
         {
-            var aFile = new FileStream("./Transactions2014.csv", FileMode.Open);
+            var config = new LoggingConfiguration();
+            var target = new FileTarget { FileName = @"C:\Work\Logs\SupportBank.log", Layout = @"${longdate} ${level} - ${logger}: ${message}" };
+            config.AddTarget("File Logger", target);
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, target));
+            LogManager.Configuration = config;
+            
+            
+            var aFile = new FileStream(path, FileMode.Open);
             var sr = new StreamReader(aFile);
 
             
@@ -36,11 +47,15 @@ namespace SupportBankConsole
                 // Console.WriteLine(line);
                 var parts = line.Split(",");
                 // Console.WriteLine(parts[0]);
-                
-                var date = DateTime.ParseExact(parts[0], "d/M/yyyy", CultureInfo.InvariantCulture); // ADDED
+                Logger.Info($"Attempting to parse date {parts[0]}");
+                var date = DateTime.ParseExact(parts[0], "d/M/yyyy", CultureInfo.InvariantCulture);
+                Logger.Info($"Attempting to get person {parts[1]}");
                 var from = GetPerson(parts[1]);
+                Logger.Info($"Attempting to get person {parts[2]}");
                 var to = GetPerson(parts[2]);
+                Logger.Info($"Attempting to get narrative {parts[3]}");
                 var narrative = parts[3];
+                Logger.Info($"Attempting to get amount {parts[4]}");
                 var amount = Convert.ToDecimal(parts[4]);
                 var transaction = new Transaction(date, from, to, narrative, amount);
                 _transactions.Add(transaction);
@@ -55,7 +70,9 @@ namespace SupportBankConsole
         private void UserInput()
         {
             Console.WriteLine("Please enter \"List All\" or \"List [Account]\" where [Account] is a name");
+            Logger.Info("Requested the user to input a command");
             var s = Console.ReadLine();
+            Logger.Info($"User inputted {s}");
             var first = s.Substring(0, 5);
             if (first != "List ")
             {
@@ -86,7 +103,7 @@ namespace SupportBankConsole
         {
             foreach (var transaction in _transactions)
             {
-                if (transaction.From.name == name)
+                if (transaction.From.Name == name)
                 {
                     Console.WriteLine(transaction);
                 }
@@ -97,7 +114,7 @@ namespace SupportBankConsole
         {
             foreach (var x in _people)
             {
-                if (x.name == name)
+                if (x.Name == name)
                 {
                     return x;
                 }

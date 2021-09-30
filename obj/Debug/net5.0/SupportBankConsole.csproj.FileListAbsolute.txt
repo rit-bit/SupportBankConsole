@@ -15,3 +15,6 @@ C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\ne
 C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.pdb
 C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.genruntimeconfig.cache
 C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\Transactions2014.csv
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\NLog.dll
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\obj\Debug\net5.0\SupportBankConsole.csproj.CopyComplete
+C:\Users\ricsut\RiderProjects\SupportBankConsole\SupportBankConsole\bin\Debug\net5.0\DodgyTransactions2015.csv

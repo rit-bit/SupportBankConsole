@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "NLog/5.0.0-preview.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NLog.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "NLog/5.0.0-preview.1": {
+      "sha512": "1K6pDap1HOTMFyvVbzp0ygPw8013IXmMyXugfMWVI56GmcdUNFvFhvyT1QaDZ5SZSY9Kbu9CUiN4Wt1jkVmYdw==",
+      "type": "package",
+      "path": "nlog/5.0.0-preview.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "N.png",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/net46/NLog.dll",
+        "lib/net46/NLog.xml",
+        "lib/netstandard1.3/NLog.dll",
+        "lib/netstandard1.3/NLog.xml",
+        "lib/netstandard1.5/NLog.dll",
+        "lib/netstandard1.5/NLog.xml",
+        "lib/netstandard2.0/NLog.dll",
+        "lib/netstandard2.0/NLog.xml",
+        "nlog.5.0.0-preview.1.nupkg.sha512",
+        "nlog.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "NLog >= 5.0.0-preview.1"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ricsut\\.nuget\\packages\\": {}
@@ -43,6 +80,12 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
+        "dependencies": {
+          "NLog": {
+            "target": "Package",
+            "version": "[5.0.0-preview.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

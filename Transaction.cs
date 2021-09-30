@@ -1,9 +1,11 @@
 ﻿using System;
+using NLog;
 
 namespace SupportBankConsole
 {
     public class Transaction
     {
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         private readonly DateTime Date; 
         public readonly Person From; 
         public readonly Person To; 
@@ -21,7 +23,7 @@ namespace SupportBankConsole
 
         public override string ToString()
         {
-            return $"{Date:MM/dd/yyyy} {To.name} lent £{Amount} to {From.name} for {Narrative}.";
+            return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount} to {From.Name} for {Narrative}.";
         }
     }
 }

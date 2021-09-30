@@ -1,34 +1,36 @@
-﻿namespace SupportBankConsole
+﻿using NLog;
+
+namespace SupportBankConsole
 {
     public class Person
     {
-        public readonly string name;
-        private decimal amount;
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+        public readonly string Name;
+        private decimal _amount;
 
         public Person(string name)
         {
-            this.name = name;
-            this.amount = 0;
+            Name = name;
         }
 
         public void IncreaseAmount(decimal amount)
         {
-            this.amount += amount;
+            _amount += amount;
         }
 
         public void DecreaseAmount(decimal amount)
         {
-            this.amount -= amount;
+            _amount -= amount;
         }
 
         public override string ToString()
         {
-            if (this.amount < 0)
+            if (_amount < 0)
             {
-                return ($"{name} owes £{-amount}");
+                return ($"{Name} owes £{-_amount}");
             }
 
-            return ($"{name} is owed £{amount}");
+            return ($"{Name} is owed £{_amount}");
         }
     }
 }
