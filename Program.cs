@@ -71,14 +71,15 @@ namespace SupportBankConsole
         {
             Console.WriteLine("Please enter \"List All\" or \"List [Account]\" where [Account] is a name");
             Logger.Info("Requested the user to input a command");
-            var s = Console.ReadLine();
-            Logger.Info($"User inputted {s}");
-            var first = s.Substring(0, 5);
-            if (first != "List ")
+            var input = Console.ReadLine();
+            Logger.Info($"User inputted {input}");
+            var firstWord = input.Substring(0, 5);
+            if (firstWord != "List ")
             {
+                Logger.Warn("User did not enter a valid command starting with \"List \"");
                 return;
             }
-            var sub = s[5..];
+            var sub = input[5..];
             switch (sub)
             {
                 case ("All"):
@@ -93,9 +94,9 @@ namespace SupportBankConsole
 
         private void ListAll()
         {
-            foreach (var y in _people)
+            foreach (var person in _people)
             {
-                Console.WriteLine(y);
+                Console.WriteLine(person);
             }
         }
 
