@@ -10,13 +10,11 @@ namespace SupportBankConsole
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         
-        public static List<Transaction> ImportCsv(string path)
+        public static void ImportCsv(string path)
         {
             var aFile = new FileStream(path, FileMode.Open);
             var streamReader = new StreamReader(aFile);
-
-            var transactions = new List<Transaction>();
-
+            
             // read data in line by line
             var line = streamReader.ReadLine(); // Remove header from CSV
             while ((line = streamReader.ReadLine()) != null)
@@ -33,14 +31,18 @@ namespace SupportBankConsole
                 Logger.Info($"Attempting to get narrative {parts[3]}");
                 var narrative = parts[3];
                 Logger.Info($"Attempting to get amount {parts[4]}");
+                if (!Validation.IsDecimalValid(parts[4]))
+                {
+                    var errorMessage = $"Invalid decimal input {parts[4]} could not be processed as an amount.";
+                    Logger.Fatal(errorMessage);
+                    throw new ArgumentException(errorMessage);
+                }
                 var amount = Convert.ToDecimal(parts[4]);
-                var transaction = new Transaction(date, from, to, narrative, amount);
-                transactions.Add(transaction);
+                new Transaction(date, from, to, narrative, amount);
                 from.DecreaseAmount(amount);
                 to.IncreaseAmount(amount);
             }
             streamReader.Close();
-            return transactions;
         }
     }
 }

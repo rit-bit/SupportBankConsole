@@ -31,7 +31,7 @@ namespace SupportBankConsole
 
         public override string ToString()
         {
-            return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount} to {From.Name} for {Narrative}.";
+            return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount:N2} to {From.Name} for {Narrative}.";
         }
     }
 }

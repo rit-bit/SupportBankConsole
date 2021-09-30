@@ -48,10 +48,10 @@ namespace SupportBankConsole
         {
             if (_amount < 0)
             {
-                return ($"{Name} owes £{-_amount}");
+                return ($"{Name} owes £{-_amount:N2}");
             }
 
-            return ($"{Name} is owed £{_amount}");
+            return ($"{Name} is owed £{_amount:N2}");
         }
     }
 }
