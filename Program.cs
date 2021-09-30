@@ -36,13 +36,13 @@ namespace SupportBankConsole
             
             
             var aFile = new FileStream(path, FileMode.Open);
-            var sr = new StreamReader(aFile);
+            var streamReader = new StreamReader(aFile);
 
             
 
             // read data in line by line
-            var line = sr.ReadLine(); // Remove header from CSV
-            while ((line = sr.ReadLine()) != null)
+            var line = streamReader.ReadLine(); // Remove header from CSV
+            while ((line = streamReader.ReadLine()) != null)
             {
                 // Console.WriteLine(line);
                 var parts = line.Split(",");
@@ -62,7 +62,7 @@ namespace SupportBankConsole
                 from.DecreaseAmount(amount);
                 to.IncreaseAmount(amount);
             }
-            sr.Close();
+            streamReader.Close();
             
             return _transactions;
         }
@@ -79,14 +79,14 @@ namespace SupportBankConsole
                 Logger.Warn("User did not enter a valid command starting with \"List \"");
                 return;
             }
-            var sub = input[5..];
-            switch (sub)
+            var secondWord = input[5..];
+            switch (secondWord)
             {
                 case ("All"):
                     ListAll();
                     break;
                 default:
-                    ListAccount(sub);
+                    ListAccount(secondWord);
                     break;
             }
 
