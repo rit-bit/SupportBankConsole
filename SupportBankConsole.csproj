@@ -14,9 +14,14 @@
       <Content Include="DodgyTransactions2015.csv">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Transactions2013.json" />
+      <Content Include="Transactions2013.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="NLog" Version="5.0.0-preview.1" />
     </ItemGroup>
 

@@ -17,8 +17,9 @@ namespace SupportBankConsole
         {
             InitialiseLogging();
             var p = new Program();
-            ImportCSV.ImportCsv("./Transactions2014.csv");
-            ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
+            //ImportCSV.ImportCsv("./Transactions2014.csv");
+            //ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
+            ImportJSON.ImportJson("./Transactions2013.json");
             while (true)
             {
                 p.UserInput();

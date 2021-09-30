@@ -23,7 +23,7 @@ namespace SupportBankConsole
                 var parts = line.Split(",");
                 // Console.WriteLine(parts[0]);
                 Logger.Info($"Attempting to parse date {parts[0]}");
-                if (!Validation.IsDateValid(parts[0]))
+                if (!Validation.IsDateValidCsv(parts[0]))
                 {
                     var errorMessage = $"Invalid date input {parts[0]} could not be processed as a date.";
                     Logger.Fatal(errorMessage);
