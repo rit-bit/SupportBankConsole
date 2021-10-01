@@ -9,7 +9,7 @@ using NLog.Targets;
 
 namespace SupportBankConsole
 {
-    class Program // Most recent version
+    class Program 
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
@@ -57,24 +57,24 @@ namespace SupportBankConsole
             Console.WriteLine("Please enter \"List All\" or \"List [Account]\" where [Account] is a name");
             Logger.Info("Requested the user to input a command");
             var input = Console.ReadLine();
+            var inputParts = input.Split(" ");
             Logger.Info($"User inputted {input}");
-            var firstWord = input.Substring(0, 5);
-            if (firstWord != "List ")
+            if (inputParts.Count == 0)
             {
-                Logger.Warn("User did not enter a valid command starting with \"List \"");
                 return;
             }
-            var secondWord = input[5..];
-            switch (secondWord)
-            {
-                case ("All"):
-                    ListAll();
-                    break;
-                default:
-                    ListAccount(secondWord);
-                    break;
-            }
 
+            if (inputParts[0] == "List")
+            {
+                if(inputParts[1] == "All")
+                {
+                    ListAll();
+                }
+                else
+                {
+                    ListAccount(inputParts[1]);
+                }
+            }
         }
 
         private void ListAll()
