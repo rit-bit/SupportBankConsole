@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 using NLog;
 
@@ -15,8 +16,10 @@ namespace SupportBankConsole
             foreach (var item in array)
             {
                 var date = Conversions.ConvertStringToDate(item.Date.ToString());
-                var amount = Conversions.ConvertStringToDecimal(item.Amount);
-                new Transaction(date, item.FromAccount, item.ToAccount, item.Narrative, amount);
+                var from = Person.GetOrCreatePerson(item.FromAccount.ToString());
+                var to = Person.GetOrCreatePerson(item.ToAccount.ToString());
+                Console.WriteLine($"{date} {from.Name} {to.Name} {item.Narrative.ToString()} {item.Amount}");
+                new Transaction(date, from, to, item.Narrative.ToString(), (decimal) item.Amount);
 
             }
         }

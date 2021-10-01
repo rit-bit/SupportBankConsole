@@ -17,12 +17,29 @@ namespace SupportBankConsole
         {
             InitialiseLogging();
             var p = new Program();
-            //ImportCSV.ImportCsv("./Transactions2014.csv");
-            //ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
-            ImportJSON.ImportJson("./Transactions2013.json");
-            while (true)
+            try
             {
-                p.UserInput();
+                ImportCSV.ImportCsv("./Transactions2014.csv");
+                ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
+                ImportJSON.ImportJson("./Transactions2013.json");
+
+                foreach (var transaction in Transaction.GetTransactions())
+                {
+                    transaction.From.DecreaseAmount(transaction.Amount);
+                    transaction.To.IncreaseAmount(transaction.Amount);
+                }
+
+                while (true)
+                {
+                    p.UserInput();
+                }
+            }
+            catch (ArgumentException exception)
+            {
+                Console.WriteLine("Program could not load transactions due to the following error.");
+                Console.WriteLine(exception.Message);
+                Console.WriteLine("Program needs to exit.");
+                Environment.Exit(-1);
             }
         }
 

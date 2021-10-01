@@ -9,17 +9,19 @@ namespace SupportBankConsole
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         public static DateTime ConvertStringToDate(string DateString)
         {
-            if (!Validation.IsDateValidCsv(DateString))
+            if (DateString.Contains(" "))
             {
-                if (!Validation.IsDateValidJson(DateString))
-                {
-                    var errorMessage = $"Invalid date input {DateString} could not be processed as a date.";
-                    Logger.Fatal(errorMessage);
-                    throw new ArgumentException(errorMessage);
-                }
-                return DateTime.ParseExact(DateString, "yyyy/M/d", CultureInfo.InvariantCulture);
+                var dateParts = DateString.Split(" ");
+                DateString = dateParts[0];
             }
-            return DateTime.ParseExact(DateString, "d/M/yyyy", CultureInfo.InvariantCulture);
+            if (Validation.IsDateValid(DateString))
+            {
+                return DateTime.ParseExact(DateString, "d/M/yyyy", CultureInfo.InvariantCulture);
+            }
+            
+            var errorMessage = $"Invalid date input {DateString} could not be processed as a date.";
+            Logger.Fatal(errorMessage);
+            throw new ArgumentException(errorMessage);
         }
         
         public static decimal ConvertStringToDecimal(string DecimalString)

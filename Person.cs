@@ -27,10 +27,11 @@ namespace SupportBankConsole
             {
                 if (x.Name == name)
                 {
+                    Logger.Info($"Found and returning person {x}");
                     return x;
                 }
             }
-
+            Logger.Info($"Did not find person, creating new person object");
             return new Person(name);
         }
 

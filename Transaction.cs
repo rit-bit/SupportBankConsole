@@ -12,7 +12,7 @@ namespace SupportBankConsole
         public readonly Person From; 
         public readonly Person To; 
         private readonly string Narrative;
-        private readonly decimal Amount;
+        public readonly decimal Amount;
 
         public Transaction(DateTime date, Person from, Person to, string narrative, decimal amount)
         {
