@@ -19,9 +19,9 @@ namespace SupportBankConsole
             var p = new Program();
             try
             {
-                ImportCSV.ImportCsv("./Transactions2014.csv");
-                ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
-                ImportJSON.ImportJson("./Transactions2013.json");
+                //ImportCSV.ImportCsv("./Transactions2014.csv");
+                //ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
+                //ImportJSON.ImportJson("./Transactions2013.json");
 
                 foreach (var transaction in Transaction.GetTransactions())
                 {
@@ -59,7 +59,7 @@ namespace SupportBankConsole
             var input = Console.ReadLine();
             var inputParts = input.Split(" ");
             Logger.Info($"User inputted {input}");
-            if (inputParts.Count == 0)
+            if (inputParts.Length == 0)
             {
                 return;
             }
@@ -72,7 +72,35 @@ namespace SupportBankConsole
                 }
                 else
                 {
-                    ListAccount(inputParts[1]);
+                    var name = input[5..];
+                    ListAccount(name);
+                }
+            }
+
+            if (inputParts[0] == "Import" && inputParts[1] == "File")
+            {
+                var FileName = inputParts[2];
+                var index = FileName.LastIndexOf(".");
+                var extension = FileName.Substring(index);
+                if (extension == ".csv")
+                {
+                    ImportCSV.ImportCsv($"./{FileName}");
+                }
+                else if (extension == ".json")
+                {
+                  ImportJSON.ImportJson($"./{FileName}");  
+                }
+                else
+                {
+                    var errorMessage = $"Could not read file {FileName}, Please try again";
+                    Logger.Info(errorMessage);
+                    Console.WriteLine(errorMessage);
+                    return;
+                }
+                foreach (var transaction in Transaction.GetTransactions())
+                {
+                    transaction.From.DecreaseAmount(transaction.Amount);
+                    transaction.To.IncreaseAmount(transaction.Amount);
                 }
             }
         }
