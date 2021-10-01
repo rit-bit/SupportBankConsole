@@ -23,6 +23,7 @@ namespace SupportBankConsole
             
             XmlElement root = doc.DocumentElement;
             IEnumerator ienum = root.GetEnumerator();
+            var i = 0;
             while (ienum.MoveNext())
             {
                 var SupportTransaction = doc.GetElementsByTagName("SupportTransaction");
@@ -30,21 +31,19 @@ namespace SupportBankConsole
                 XmlNodeList from = doc.GetElementsByTagName("From");
                 XmlNodeList narrative = doc.GetElementsByTagName("Description");
                 XmlNodeList amount = doc.GetElementsByTagName("Value");
-                for (int i=0; i < to.Count; i++)
-                {
-                    string date = DateTime.Now.ToString();
-                    var TransactionElement = (XmlElement) SupportTransaction[i];
-                    if (TransactionElement.HasAttribute("Date")){
-                        date = TransactionElement.GetAttribute("Date");
-                    }
 
-                    var toPerson = Person.GetOrCreatePerson(to[i].InnerXml);
-                    var fromPerson = Person.GetOrCreatePerson(from[i].InnerXml);
-                    var amountDecimal = Conversions.ConvertStringToDecimal(amount[i].InnerXml);
-                    
-                    Console.WriteLine(date);
-                    Console.WriteLine("");
+                string date = DateTime.Now.ToString();
+                var TransactionElement = (XmlElement) SupportTransaction[i];
+                if (TransactionElement.HasAttribute("Date"))
+                { date = TransactionElement.GetAttribute("Date");
                 }
+                var toPerson = Person.GetOrCreatePerson(to[i].InnerXml);
+                var fromPerson = Person.GetOrCreatePerson(from[i].InnerXml);
+                var amountDecimal = Conversions.ConvertStringToDecimal(amount[i].InnerXml);
+                var dateTime = Conversions.ConvertXMLToDate(date);
+                new Transaction(dateTime, fromPerson, toPerson, narrative[i].InnerXml, amountDecimal);
+                i++;
+
             }
         }
     }

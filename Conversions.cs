@@ -34,5 +34,14 @@ namespace SupportBankConsole
             }
             return Convert.ToDecimal(DecimalString);
         }
+
+        public static DateTime ConvertXMLToDate(string DateString)
+        {
+            var dateNumber = Convert.ToInt32(DateString);
+            var date = new DateTime(1900,01,01);
+            date = date.AddDays(dateNumber);
+            return date;
+        }
+        
     }
 }
