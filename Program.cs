@@ -9,7 +9,7 @@ using NLog.Targets;
 
 namespace SupportBankConsole
 {
-    class Program
+    class Program // Most recent version
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
