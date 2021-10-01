@@ -79,20 +79,20 @@ namespace SupportBankConsole
 
             if (inputParts[0] == "Import" && inputParts[1] == "File")
             {
-                var FileName = inputParts[2];
-                var index = FileName.LastIndexOf(".");
-                var extension = FileName.Substring(index);
+                var fileName = inputParts[2];
+                var index = fileName.LastIndexOf(".", StringComparison.Ordinal);
+                var extension = fileName.Substring(index);
                 if (extension == ".csv")
                 {
-                    ImportCSV.ImportCsv($"./{FileName}");
+                    ImportCSV.ImportCsv($"./{fileName}");
                 }
                 else if (extension == ".json")
                 {
-                  ImportJSON.ImportJson($"./{FileName}");  
+                  ImportJSON.ImportJson($"./{fileName}");  
                 }
                 else
                 {
-                    var errorMessage = $"Could not read file {FileName}, Please try again";
+                    var errorMessage = $"Could not read file {fileName}, Please try again";
                     Logger.Info(errorMessage);
                     Console.WriteLine(errorMessage);
                     return;
