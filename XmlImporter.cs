@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -8,10 +9,10 @@ using NLog;
 
 namespace SupportBankConsole
 {
-    public class ImportXML
+    public class XmlImporter : Importer
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-        public static void importXML(string path)
+        IEnumerable<Transaction> Importer.ImportFromFile(string path)
         {
             XmlDocument doc = new XmlDocument();
             string contents;
@@ -40,8 +41,8 @@ namespace SupportBankConsole
                 var toPerson = Person.GetOrCreatePerson(to[i].InnerXml);
                 var fromPerson = Person.GetOrCreatePerson(from[i].InnerXml);
                 var amountDecimal = Conversions.ConvertStringToDecimal(amount[i].InnerXml);
-                var dateTime = Conversions.ConvertXMLToDate(date);
-                new Transaction(dateTime, fromPerson, toPerson, narrative[i].InnerXml, amountDecimal);
+                var dateTime = Conversions.ConvertXMLStringToDate(date);
+                yield return new Transaction(dateTime, fromPerson, toPerson, narrative[i].InnerXml, amountDecimal);
                 i++;
 
             }

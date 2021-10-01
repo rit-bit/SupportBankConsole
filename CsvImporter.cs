@@ -6,11 +6,11 @@ using NLog;
 
 namespace SupportBankConsole
 {
-    public class ImportCSV
+    public class CsvImporter : Importer
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         
-        public static void ImportCsv(string path)
+        IEnumerable<Transaction> Importer.ImportFromFile(string path)
         {
             var aFile = new FileStream(path, FileMode.Open);
             var streamReader = new StreamReader(aFile);
@@ -46,7 +46,7 @@ namespace SupportBankConsole
                     throw new ArgumentException(errorMessage);
                 }
                 var amount = Convert.ToDecimal(parts[4]);
-                new Transaction(date, from, to, narrative, amount);
+                yield return new Transaction(date, from, to, narrative, amount);
             }
             streamReader.Close();
         }

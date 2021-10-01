@@ -34,6 +34,7 @@ namespace SupportBankConsole
                     p.UserInput();
                 }
             }
+            // TODO - BEN - Catch "file going wrong" exceptions differently to "user input going wrong"
             catch (ArgumentException exception)
             {
                 Console.WriteLine("Program could not load transactions due to the following error.");
@@ -52,9 +53,10 @@ namespace SupportBankConsole
             LogManager.Configuration = config;
         }
 
+        // TODO - BEN - Maybe you could make a "UserInput" class
         private void UserInput()
         {
-            Console.WriteLine("These are the available commands: ");
+            Console.WriteLine("\nThese are the available commands: ");
             Console.WriteLine("- List All");
             Console.WriteLine("- List [Account] where [Account] is a name");
             Console.WriteLine("- Import File [Filename] where [Filename] is the files name");
@@ -70,6 +72,7 @@ namespace SupportBankConsole
 
             if (inputParts[0] == "List")
             {
+                //TODO - BEN - Index out of range
                 if(inputParts[1] == "All")
                 {
                     ListAll();
@@ -81,38 +84,13 @@ namespace SupportBankConsole
                 }
             }
 
+            // TODO  BEN - Index out of range
             if (inputParts[0] == "Import" && inputParts[1] == "File")
             {
                 var fileName = inputParts[2];
-                var index = fileName.LastIndexOf(".", StringComparison.Ordinal);
-                var extension = fileName.Substring(index);
-                if (extension == ".csv")
-                {
-                    ImportCSV.ImportCsv($"./{fileName}");
-                    Console.WriteLine($"Import of file {fileName} has been successful");
-                }
-                else if (extension == ".json")
-                {
-                  ImportJSON.ImportJson($"./{fileName}");
-                  Console.WriteLine($"Import of file {fileName} has been successful");
-                }
-                else if (extension == ".xml")
-                {
-                    ImportXML.importXML($"./{fileName}");
-                    Console.WriteLine($"Import of file {fileName} has been successful");
-                }
-                else
-                {
-                    var errorMessage = $"Could not read file {fileName}, Please try again";
-                    Logger.Info(errorMessage);
-                    Console.WriteLine(errorMessage);
-                    return;
-                }
-                foreach (var transaction in Transaction.GetTransactions())
-                {
-                    transaction.From.DecreaseAmount(transaction.Amount);
-                    transaction.To.IncreaseAmount(transaction.Amount);
-                }
+
+                var importer = Importer.GetImporter(fileName);
+                importer.Import(fileName);
             }
         }
 
