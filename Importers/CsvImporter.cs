@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using NLog;
 
-namespace SupportBankConsole
+namespace SupportBankConsole.Importers
 {
     public class CsvImporter : Importer
     {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using NLog;
 
-namespace SupportBankConsole
+namespace SupportBankConsole.Importers
 {
     public class JsonImporter : Importer
     {

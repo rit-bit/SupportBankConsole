@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// TODO - BEN - Move all the importers to an "Importers" namespace
-namespace SupportBankConsole
+namespace SupportBankConsole.Importers
 {
     public interface Importer
     {
