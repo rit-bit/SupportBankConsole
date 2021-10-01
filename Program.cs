@@ -54,7 +54,11 @@ namespace SupportBankConsole
 
         private void UserInput()
         {
-            Console.WriteLine("Please enter \"List All\" or \"List [Account]\" where [Account] is a name");
+            Console.WriteLine("These are the available commands: ");
+            Console.WriteLine("- List All");
+            Console.WriteLine("- List [Account] where [Account] is a name");
+            Console.WriteLine("- Import File [Filename] where [Filename] is the files name");
+            Console.WriteLine("Please enter one of the commands: ");
             Logger.Info("Requested the user to input a command");
             var input = Console.ReadLine();
             var inputParts = input.Split(" ");
@@ -85,10 +89,17 @@ namespace SupportBankConsole
                 if (extension == ".csv")
                 {
                     ImportCSV.ImportCsv($"./{fileName}");
+                    Console.WriteLine($"Import of file {fileName} has been successful");
                 }
                 else if (extension == ".json")
                 {
-                  ImportJSON.ImportJson($"./{fileName}");  
+                  ImportJSON.ImportJson($"./{fileName}");
+                  Console.WriteLine($"Import of file {fileName} has been successful");
+                }
+                else if (extension == ".xml")
+                {
+                    ImportXML.importXML($"./{fileName}");
+                    Console.WriteLine($"Import of file {fileName} has been successful");
                 }
                 else
                 {
