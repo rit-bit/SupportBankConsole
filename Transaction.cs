@@ -8,11 +8,11 @@ namespace SupportBankConsole
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         private static List<Transaction> _transactions = new List<Transaction>();
-        private readonly DateTime Date; 
-        public readonly Person From; 
-        public readonly Person To; 
-        private readonly string Narrative;
-        public readonly decimal Amount;
+        public DateTime Date { get; }
+        public Person From { get; }
+        public Person To { get; }
+        public string Narrative{ get; }
+        public decimal Amount{ get; }
 
         public Transaction(DateTime date, Person from, Person to, string narrative, decimal amount)
         {
@@ -23,7 +23,7 @@ namespace SupportBankConsole
             Amount = amount;
             _transactions.Add(this);
         }
-        
+
         public static List<Transaction> GetTransactions()
         {
             return _transactions;
@@ -32,11 +32,6 @@ namespace SupportBankConsole
         public override string ToString()
         {
             return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount:N2} to {From.Name} for {Narrative}.";
-        }
-
-        public string ToCsv()
-        {
-            return ($"{Date:d},{From.Name},{To.Name},{Narrative},{Amount}");
         }
     }
 }

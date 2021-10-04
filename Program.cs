@@ -14,7 +14,7 @@ namespace SupportBankConsole
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             InitialiseLogging();
             var p = new Program();
