@@ -28,8 +28,6 @@ namespace SupportBankConsole
                 {
                     Console.WriteLine("Program could not load transactions due to the following error.");
                     Console.WriteLine(exception.Message);
-                    Console.WriteLine("Program needs to exit.");
-                    Environment.Exit(-1);
                 }
             }
         }
@@ -56,7 +54,7 @@ namespace SupportBankConsole
         {
             foreach (var transaction in Transaction.GetTransactions())
             {
-                if (transaction.From.Name == name)
+                if (transaction.FromAccount.Name == name)
                 {
                     Console.WriteLine(transaction);
                 }

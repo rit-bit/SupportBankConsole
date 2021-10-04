@@ -9,16 +9,16 @@ namespace SupportBankConsole
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         private static List<Transaction> _transactions = new List<Transaction>();
         public DateTime Date { get; }
-        public Person From { get; }
-        public Person To { get; }
+        public Person FromAccount { get; }
+        public Person ToAccount { get; }
         public string Narrative{ get; }
         public decimal Amount{ get; }
 
-        public Transaction(DateTime date, Person from, Person to, string narrative, decimal amount)
+        public Transaction(DateTime date, Person fromAccount, Person toAccount, string narrative, decimal amount)
         {
             Date = date;
-            From = from;
-            To = to;
+            FromAccount = fromAccount;
+            ToAccount = toAccount;
             Narrative = narrative;
             Amount = amount;
             _transactions.Add(this);
@@ -31,7 +31,7 @@ namespace SupportBankConsole
 
         public override string ToString()
         {
-            return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount:N2} to {From.Name} for {Narrative}.";
+            return $"{Date:MM/dd/yyyy} {ToAccount.Name} lent £{Amount:N2} to {FromAccount.Name} for {Narrative}.";
         }
     }
 }

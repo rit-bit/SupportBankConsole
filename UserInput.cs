@@ -1,5 +1,6 @@
 using System;
 using NLog;
+using SupportBankConsole.Exporters;
 using SupportBankConsole.Importers;
 
 namespace SupportBankConsole
@@ -43,7 +44,8 @@ namespace SupportBankConsole
             {
                 var fileName = inputParts[2];
                 
-                ExportCsv.Export(fileName);
+                var exporter = IExporter.GetExporter(fileName);
+                exporter.Export(fileName);
             }
             
             

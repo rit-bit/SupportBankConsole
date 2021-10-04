@@ -27,8 +27,8 @@ namespace SupportBankConsole.Importers
         {
             foreach (var transaction in ImportFromFile(path))
             {
-                transaction.From.DecreaseAmount(transaction.Amount);
-                transaction.To.IncreaseAmount(transaction.Amount);
+                transaction.FromAccount.DecreaseAmount(transaction.Amount);
+                transaction.ToAccount.IncreaseAmount(transaction.Amount);
             }
             Console.WriteLine($"File {path} was imported successfully.");
         }
