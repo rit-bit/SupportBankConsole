@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using NLog;
+using NLog.Fluent;
 
 namespace SupportBankConsole.Importers
 {
     public interface IImporter
     {
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         public static IImporter GetImporter(string path)
         {
-            int index = path.LastIndexOf(".", StringComparison.Ordinal);
+            var index = path.LastIndexOf(".", StringComparison.Ordinal);
             switch (path[index..])
             {
                 case ".csv":
@@ -27,10 +30,13 @@ namespace SupportBankConsole.Importers
         {
             foreach (var transaction in ImportFromFile(path))
             {
+                Logger.Info($"Adjusting account balances for the following transaction: {transaction}");
                 transaction.FromAccount.DecreaseAmount(transaction.Amount);
                 transaction.ToAccount.IncreaseAmount(transaction.Amount);
             }
-            Console.WriteLine($"File {path} was imported successfully.");
+            var msg = $"File {path} was imported successfully.";
+            Console.WriteLine(msg);
+            Logger.Info(msg);
         }
     }
 }

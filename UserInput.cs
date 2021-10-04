@@ -27,28 +27,19 @@ namespace SupportBankConsole
                 }
                 else
                 {
-                    var name = input[5..];
-                    program.ListAccount(name);
+                    program.ListAccount(input[5..]);
                 }
             }
             
             if (inputParts[0] == "Import" && inputParts[1] == "File" && inputParts.Length == 3)
             {
-                var fileName = inputParts[2];
-
-                var importer = IImporter.GetImporter(fileName);
-                importer.Import(fileName);
+                program.TryToImportFile(inputParts[2]);
             }
             
             if (inputParts[0] == "Export" && inputParts[1] == "File" && inputParts.Length == 3)
             {
-                var fileName = inputParts[2];
-                
-                var exporter = IExporter.GetExporter(fileName);
-                exporter.Export(fileName);
+                program.TryToExportFile(inputParts[2]);
             }
-            
-            
         }
         private static string RequestUserInput()
         {
@@ -56,7 +47,8 @@ namespace SupportBankConsole
             Console.WriteLine("- List All");
             Console.WriteLine("- List [Account] where [Account] is a name");
             Console.WriteLine("- Import File [Filename] where [Filename] is the files name");
-            Console.WriteLine("- Export File [Filename] where [Filename] is what you want the file to be saved as");
+            Console.WriteLine("- Export File [Filename] where [Filename] is the name of the output file to create");
+            Console.WriteLine("All filenames should end with \".csv\", \".json\", or \".xml\"");
             Console.WriteLine("Please enter one of the commands: ");
             Logger.Info("Requested the user to input a command");
             return Console.ReadLine();

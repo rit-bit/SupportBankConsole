@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using NLog;
 using SupportBankConsole.Importers;
 
 namespace SupportBankConsole.Exporters
 {
     public interface IExporter
     {
-        
+        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         public static IExporter GetExporter(string filename)
         {
             var index = filename.LastIndexOf(".", StringComparison.Ordinal);
-            switch (filename[index..])
+            var extension = filename[index..];
+            switch (extension)
             {
                 case ".csv":
                     return new CsvExporter();
                 case ".json":
                     return new JsonExporter();
                 default:
-                    throw new NotSupportedException();
+                    var msg = $"\"{extension}\" file extension is not supported for exporting.";
+                    Logger.Error(msg);
+                    throw new NotSupportedException(msg);
             }
         }
 
@@ -26,7 +30,9 @@ namespace SupportBankConsole.Exporters
         public void Export(string filename)
         {
             ExportToFile(filename);
-            Console.WriteLine($"File {filename} was exported successfully.");
+            var msg = $"File {filename} was exported successfully.";
+            Console.WriteLine(msg);
+            Logger.Info(msg);
         }
     }
 }

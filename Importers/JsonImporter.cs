@@ -10,8 +10,9 @@ namespace SupportBankConsole.Importers
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         IEnumerable<Transaction> IImporter.ImportFromFile(string path)
         {
-            using StreamReader reader = new StreamReader(path);
+            using var reader = new StreamReader(path);
             var json = reader.ReadToEnd();
+            Logger.Info("Attempting to deserialize ");
             dynamic array = JsonConvert.DeserializeObject(json);
             foreach (var item in array)
             {

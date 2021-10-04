@@ -4,44 +4,36 @@ using NLog;
 
 namespace SupportBankConsole
 {
-    public class Conversions
+    public static class Conversions
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-        public static DateTime ConvertStringToDate(string DateString)
+        public static DateTime ConvertStringToDate(string dateString)
         {
-            if (DateString.Contains(" "))
+            if (dateString.Contains(" "))
             {
-                var dateParts = DateString.Split(" ");
-                DateString = dateParts[0];
+                var dateParts = dateString.Split(" ");
+                dateString = dateParts[0];
             }
-            if (Validation.IsDateValid(DateString))
+            if (Validation.IsDateValid(dateString))
             {
-                return DateTime.ParseExact(DateString, "d/M/yyyy", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact(dateString, "d/M/yyyy", CultureInfo.InvariantCulture);
             }
             
-            var errorMessage = $"Invalid date input {DateString} could not be processed as a date.";
+            var errorMessage = $"Invalid date input {dateString} could not be processed as a date.";
             Logger.Fatal(errorMessage);
             throw new ArgumentException(errorMessage);
         }
         
-        public static decimal ConvertStringToDecimal(string DecimalString)
+        public static decimal ConvertStringToDecimal(string decimalString)
         {
-            if (!Validation.IsDecimalValid(DecimalString))
+            if (!Validation.IsDecimalValid(decimalString))
             {
-                var errorMessage = $"Invalid decimal input {DecimalString} could not be processed as an amount.";
+                var errorMessage = $"Invalid decimal input {decimalString} could not be processed as an amount.";
                 Logger.Fatal(errorMessage);
                 throw new ArgumentException(errorMessage);
             }
-            return Convert.ToDecimal(DecimalString);
+            return Convert.ToDecimal(decimalString);
         }
 
-        public static DateTime ConvertXMLStringToDate(string DateString)
-        {
-            var dateNumber = Convert.ToInt32(DateString);
-            var date = new DateTime(1900,01,01);
-            date = date.AddDays(dateNumber);
-            return date;
-        }
-        
     }
 }
