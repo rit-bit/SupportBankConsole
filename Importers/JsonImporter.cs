@@ -16,8 +16,8 @@ namespace SupportBankConsole.Importers
             foreach (var item in array)
             {
                 var date = Conversions.ConvertStringToDate(item.Date.ToString());
-                var from = Person.GetOrCreatePerson(item.FromAccount.GetOweString());
-                var to = Person.GetOrCreatePerson(item.ToAccount.GetOweString());
+                var from = Person.GetOrCreatePerson(item.FromAccount.ToString());
+                var to = Person.GetOrCreatePerson(item.ToAccount.ToString());
                 yield return new Transaction(date, from, to, item.Narrative.ToString(), (decimal) item.Amount);
 
             }

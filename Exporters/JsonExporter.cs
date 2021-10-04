@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SupportBankConsole.Exporters
 {
@@ -6,8 +7,12 @@ namespace SupportBankConsole.Exporters
     {
         void IExporter.ExportToFile(string filename)
         {
-            
-            var output = JsonConvert.SerializeObject(Transaction.GetTransactions());
+            var listToOutput = new List<TransactionToJson>();
+            foreach (var transaction in Transaction.GetTransactions())
+            {
+                listToOutput.Add(new TransactionToJson(transaction));
+            }
+            var output = JsonConvert.SerializeObject(listToOutput);
             System.IO.File.WriteAllText(@"C:\Work\Outputs\" + filename,
                 output);
         }
