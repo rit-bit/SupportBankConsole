@@ -18,32 +18,22 @@ namespace SupportBankConsole
         {
             InitialiseLogging();
             var p = new Program();
-            try
+            while (true)
             {
-                //ImportCSV.ImportCsv("./Transactions2014.csv");
-                //ImportCSV.ImportCsv("./DodgyTransactions2015.csv");
-                //ImportJSON.ImportJson("./Transactions2013.json");
-
-                foreach (var transaction in Transaction.GetTransactions())
-                {
-                    transaction.From.DecreaseAmount(transaction.Amount);
-                    transaction.To.IncreaseAmount(transaction.Amount);
-                }
-
-                while (true)
+                try
                 {
                     UserInput.GetUserInput(p);
                 }
-            }
-            // TODO - BEN - Catch "file going wrong" exceptions differently to "user input going wrong"
-            catch (ArgumentException exception)
-            {
-                Console.WriteLine("Program could not load transactions due to the following error.");
-                Console.WriteLine(exception.Message);
-                Console.WriteLine("Program needs to exit.");
-                Environment.Exit(-1);
+                catch (ArgumentException exception)
+                {
+                    Console.WriteLine("Program could not load transactions due to the following error.");
+                    Console.WriteLine(exception.Message);
+                    Console.WriteLine("Program needs to exit.");
+                    Environment.Exit(-1);
+                }
             }
         }
+    
 
         private static void InitialiseLogging()
         {
