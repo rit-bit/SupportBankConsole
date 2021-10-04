@@ -1,7 +1,5 @@
 using System;
 using NLog;
-using SupportBankConsole.Exporters;
-using SupportBankConsole.Importers;
 
 namespace SupportBankConsole
 {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Transactions;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
