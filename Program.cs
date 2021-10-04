@@ -17,14 +17,7 @@ namespace SupportBankConsole
             var p = new Program();
             while (true)
             {
-                try
-                {
-                    UserInput.GetUserInput(p);
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.Message);
-                }
+                UserInput.GetUserInput(p);
             }
         }
     
