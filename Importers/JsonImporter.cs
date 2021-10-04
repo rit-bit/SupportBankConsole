@@ -5,10 +5,10 @@ using NLog;
 
 namespace SupportBankConsole.Importers
 {
-    public class JsonImporter : Importer
+    public class JsonImporter : IImporter
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-        IEnumerable<Transaction> Importer.ImportFromFile(string path)
+        IEnumerable<Transaction> IImporter.ImportFromFile(string path)
         {
             using StreamReader reader = new StreamReader(path);
             var json = reader.ReadToEnd();

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SupportBankConsole.Importers
 {
-    public interface Importer
+    public interface IImporter
     {
-        public static Importer GetImporter(string path)
+        public static IImporter GetImporter(string path)
         {
             int index = path.LastIndexOf(".", StringComparison.Ordinal);
             switch (path[index..])

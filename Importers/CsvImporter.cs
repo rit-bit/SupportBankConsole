@@ -6,11 +6,11 @@ using NLog;
 
 namespace SupportBankConsole.Importers
 {
-    public class CsvImporter : Importer
+    public class CsvImporter : IImporter
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         
-        IEnumerable<Transaction> Importer.ImportFromFile(string path)
+        IEnumerable<Transaction> IImporter.ImportFromFile(string path)
         {
             var aFile = new FileStream(path, FileMode.Open);
             var streamReader = new StreamReader(aFile);

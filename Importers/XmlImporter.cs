@@ -8,10 +8,10 @@ using NLog;
 
 namespace SupportBankConsole.Importers
 {
-    public class XmlImporter : Importer
+    public class XmlImporter : IImporter
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-        IEnumerable<Transaction> Importer.ImportFromFile(string path)
+        IEnumerable<Transaction> IImporter.ImportFromFile(string path)
         {
             XmlDocument doc = new XmlDocument();
             string contents;

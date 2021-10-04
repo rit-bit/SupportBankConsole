@@ -4,10 +4,10 @@ using SupportBankConsole.Importers;
 
 namespace SupportBankConsole
 {
-    public class UserInput
+    public static class UserInput
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-        public static void GetUserInput()
+        public static void GetUserInput(ICommands program)
         {
             var input = RequestUserInput();
             var inputParts = input.Split(" ");
@@ -22,12 +22,12 @@ namespace SupportBankConsole
             {
                 if(inputParts[1] == "All")
                 {
-                    ListAll();
+                    program.ListAll();
                 }
                 else
                 {
                     var name = input[5..];
-                    ListAccount(name);
+                    program.ListAccount(name);
                 }
             }
             
@@ -35,7 +35,7 @@ namespace SupportBankConsole
             {
                 var fileName = inputParts[2];
 
-                var importer = Importer.GetImporter(fileName);
+                var importer = IImporter.GetImporter(fileName);
                 importer.Import(fileName);
             }
         }

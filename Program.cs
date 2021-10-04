@@ -10,7 +10,7 @@ using SupportBankConsole.Importers;
 
 namespace SupportBankConsole
 {
-    class Program 
+    class Program : ICommands
     {
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
@@ -32,7 +32,7 @@ namespace SupportBankConsole
 
                 while (true)
                 {
-                    p.UserInput();
+                    UserInput.GetUserInput(p);
                 }
             }
             // TODO - BEN - Catch "file going wrong" exceptions differently to "user input going wrong"
