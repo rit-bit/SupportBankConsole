@@ -21,10 +21,8 @@ namespace SupportBankConsole
                 {
                     UserInput.GetUserInput(p);
                 }
-                catch (ArgumentException exception)
+                catch (Exception exception)
                 {
-                    Logger.Error(exception);
-                    Console.WriteLine("Program could not load transactions due to the following error.");
                     Console.WriteLine(exception.Message);
                 }
             }
@@ -73,6 +71,12 @@ namespace SupportBankConsole
             {
                 Console.WriteLine(exception.Message);
                 Logger.Error(exception);
+            }
+            catch (ArgumentException exception)
+            {
+                Logger.Error(exception);
+                Console.WriteLine("Program could not load transactions due to the following error.");
+                Console.WriteLine(exception.Message);
             }
         }
 

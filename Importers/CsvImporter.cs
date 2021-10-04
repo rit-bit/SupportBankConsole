@@ -16,19 +16,17 @@ namespace SupportBankConsole.Importers
             var streamReader = new StreamReader(aFile);
             
             // read data in line by line
-            var line = streamReader.ReadLine(); // Remove header from CSV
+            var line = streamReader.ReadLine(); // Removes the header from the CSV
             var lineNumber = 1;
             while ((line = streamReader.ReadLine()) != null)
             {
                 lineNumber++;
-                // Console.WriteLine(line);
                 var parts = line.Split(",");
-                // Console.WriteLine(parts[0]);
                 Logger.Info($"Attempting to parse date {parts[0]}");
                 if (!Validation.IsDateValid(parts[0]))
                 {
                     var errorMessage = $"Invalid date input \"{parts[0]}\" on line number {lineNumber} could not be processed as a date.";
-                    Logger.Fatal(errorMessage);
+                    Logger.Error(errorMessage);
                     throw new ArgumentException(errorMessage);
                 }
                 var date = DateTime.ParseExact(parts[0], "d/M/yyyy", CultureInfo.InvariantCulture);
@@ -42,7 +40,7 @@ namespace SupportBankConsole.Importers
                 if (!Validation.IsDecimalValid(parts[4]))
                 {
                     var errorMessage = $"Invalid decimal input \"{parts[4]}\" on line number {lineNumber}  could not be processed as an amount.";
-                    Logger.Fatal(errorMessage);
+                    Logger.Error(errorMessage);
                     throw new ArgumentException(errorMessage);
                 }
                 var amount = Convert.ToDecimal(parts[4]);
