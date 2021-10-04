@@ -38,6 +38,15 @@ namespace SupportBankConsole
                 var importer = IImporter.GetImporter(fileName);
                 importer.Import(fileName);
             }
+            
+            if (inputParts[0] == "Export" && inputParts[1] == "File" && inputParts.Length == 3)
+            {
+                var fileName = inputParts[2];
+                
+                ExportCsv.Export(fileName);
+            }
+            
+            
         }
         private static string RequestUserInput()
         {
@@ -45,6 +54,7 @@ namespace SupportBankConsole
             Console.WriteLine("- List All");
             Console.WriteLine("- List [Account] where [Account] is a name");
             Console.WriteLine("- Import File [Filename] where [Filename] is the files name");
+            Console.WriteLine("- Export File [Filename] where [Filename] is what you want the file to be saved as");
             Console.WriteLine("Please enter one of the commands: ");
             Logger.Info("Requested the user to input a command");
             return Console.ReadLine();

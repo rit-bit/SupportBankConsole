@@ -33,5 +33,10 @@ namespace SupportBankConsole
         {
             return $"{Date:MM/dd/yyyy} {To.Name} lent £{Amount:N2} to {From.Name} for {Narrative}.";
         }
+
+        public string ToCsv()
+        {
+            return ($"{Date:d},{From.Name},{To.Name},{Narrative},{Amount}");
+        }
     }
 }
